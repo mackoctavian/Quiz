@@ -1,9 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
+import AnswerOption from "./AnswerOption";
 
 export const QuestionCard = () => {
   return (
     <View style={styles.questionCard}>
       <Text style={styles.question}>What is React Native?</Text>
+      <View>
+        <AnswerOption />
+        <AnswerOption />
+        <AnswerOption />
+        <AnswerOption />
+      </View>
     </View>
   );
 };
