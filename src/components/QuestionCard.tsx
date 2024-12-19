@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
 import AnswerOption from "./AnswerOption";
 
-export const QuestionCard = () => {
+export const QuestionCard = (props) => {
   return (
     <View style={styles.questionCard}>
-      <Text style={styles.question}>What is React Native?</Text>
+      <Text style={styles.question}>{props.question.title}</Text>
       <View>
-        <AnswerOption />
-        <AnswerOption />
-        <AnswerOption />
-        <AnswerOption />
+        <AnswerOption options={props.question.options[0]} />
+        <AnswerOption options={props.question.options[1]} />
+        <AnswerOption options={props.question.options[2]} />
+        <AnswerOption options={props.question.options[3]} />
       </View>
     </View>
   );

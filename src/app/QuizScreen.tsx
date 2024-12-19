@@ -2,6 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { View, Text, StyleSheet, SafeAreaView, Pressable } from "react-native";
 import { QuestionCard } from "../components/QuestionCard";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import questions from "../questions";
+
+const question = questions[0];
 
 export default function QuizScreen() {
   return (
@@ -13,7 +16,7 @@ export default function QuizScreen() {
         </View>
 
         {/* Body */}
-        <QuestionCard />
+        <QuestionCard question={question} />
         <Text style={styles.time}>20 sec</Text>
         {/* Footer */}
         <Pressable onPress={() => console.warn("Press")} style={styles.button}>
