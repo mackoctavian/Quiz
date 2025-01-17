@@ -1,19 +1,24 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 type AnswerOption = {
   option: string;
   isSelected?: boolean;
-  onPress: (option: string) => void;
-};
+} & PressableProps;
 
 export default function AnswerOption({
   option,
   isSelected,
-  onPress,
+  ...pressableProps
 }: AnswerOption) {
   return (
     <Pressable
-      onPress={() => onPress(option)}
+      {...pressableProps}
       style={[
         styles.constainer,
         isSelected && {
