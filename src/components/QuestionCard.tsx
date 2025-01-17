@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import AnswerOption from "./AnswerOption";
 import { Question } from "../types";
+import Card from "./Card";
 
 type QuestionCard = {
   question: Question;
@@ -12,8 +13,7 @@ export const QuestionCard = ({ question }: QuestionCard) => {
     console.warn("selected: ", option);
   };
   return (
-    <View style={styles.questionCard}>
-      <Text style={styles.question}>{question.title}</Text>
+    <Card title={question.title}>
       <View style={{ gap: 10 }}>
         {question.options.map((option) => (
           <AnswerOption
@@ -24,7 +24,7 @@ export const QuestionCard = ({ question }: QuestionCard) => {
           />
         ))}
       </View>
-    </View>
+    </Card>
   );
 };
 
