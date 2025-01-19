@@ -6,10 +6,25 @@ import questions from "../questions";
 import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
 import { useQuizContext } from "../providers/QuizProvider";
+import { useEffect, useRef, useState } from "react";
+import { useTimer } from "../hooks/useTimer";
 
 export default function QuizScreen() {
-  const { question, questionIndex, onNext, score, totalQuestion } =
+  const { question, questionIndex, onNext, score, totalQuestion, bestScore } =
     useQuizContext();
+
+  const { time, startTimer, clearTimer } = useTimer(20);
+
+  useEffect(() => {
+    startTimer();
+    return () => clearTimer();
+  }, [question]);
+
+  useEffect(() => {
+    if (time <= 0) {
+      onNext();
+    }
+  }, [time]);
 
   return (
     <SafeAreaView style={styles.page}>
@@ -23,14 +38,14 @@ export default function QuizScreen() {
         {question ? (
           <>
             <QuestionCard question={question} />{" "}
-            <Text style={styles.time}>20 sec</Text>
+            <Text style={styles.time}>{time} sec</Text>
           </>
         ) : (
           <Card title="well done">
             <Text>
               Correct answers: {score}/{totalQuestion}
             </Text>
-            <Text>Best score: 10</Text>
+            <Text>Best score: {bestScore}</Text>
           </Card>
         )}
 
