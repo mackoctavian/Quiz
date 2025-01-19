@@ -5,21 +5,18 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import questions from "../questions";
 import Card from "../components/Card";
 import CustomButton from "../components/CustomButton";
-import { useState } from "react";
+import { useQuizContext } from "../providers/QuizProvider";
 
 export default function QuizScreen() {
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const question = questions[questionIndex];
+  const { question, questionIndex, onNext, score, totalQuestion } =
+    useQuizContext();
 
-  const onNext = () => {
-    setQuestionIndex((index) => index + 1);
-  };
   return (
     <SafeAreaView style={styles.page}>
       <View style={styles.container}>
         {/* Header */}
         <View>
-          <Text style={styles.title}>Question 1/5</Text>
+          <Text style={styles.title}>Question 1/{totalQuestion}</Text>
         </View>
 
         {/* Body */}
@@ -29,7 +26,12 @@ export default function QuizScreen() {
             <Text style={styles.time}>20 sec</Text>
           </>
         ) : (
-          <Card title="well done" />
+          <Card title="well done">
+            <Text>
+              Correct answers: {score}/{totalQuestion}
+            </Text>
+            <Text>Best score: 10</Text>
+          </Card>
         )}
 
         {/* Footer */}
