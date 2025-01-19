@@ -37,7 +37,7 @@ export default function QuizScreen() {
         {/* Body */}
         {question ? (
           <>
-            <QuestionCard question={question} />{" "}
+            <QuestionCard question={question} />
             <Text style={styles.time}>{time} sec</Text>
           </>
         ) : (
